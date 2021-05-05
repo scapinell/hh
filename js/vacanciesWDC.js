@@ -112,7 +112,7 @@
 
     // Download the data
     myConnector.getData = function(table, doneCallback) {
-        $.getJSON("https://drive.google.com/file/d/142wbxk3wWANWBCkL23bRlLsyzh6Re5RO/view?usp=sharing", function(resp) {
+        $.getJSON("https://drive.google.com/file/d/1_ehbi1qrhgjsXnhsKFpuxY-EqH5nm0Gr/view?usp=sharing", function(resp) {
         var feat = resp.features,
             tableData = [];
 
