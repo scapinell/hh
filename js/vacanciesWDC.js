@@ -1,4 +1,5 @@
-//import clickhouse from 'clickhouse';
+//var { ClickHouse } = require('clickhouse');
+//const stream = require('stream');
 
 (function() {
     // Create the connector object
@@ -112,48 +113,51 @@
 
     // Download the data
     myConnector.getData = function(table, doneCallback) {
+
+
         $.getJSON("https://drive.google.com/file/d/1_SDT07iquU9qAa34svtBvqoytbDRBsos", function(resp) {
         var feat = resp.features,
             tableData = [];
 
-        for (var i = 0; i < vacancies_json.length; i++) {
+        for (var i = 0; i < feat.length; i++) {
             tableData.push({
-                "query_string": vacancies_json[i].query_string,
-                "type": vacancies_json[i].type,
-                "level": vacancies_json[i].level,
-                "direction": vacancies_json[i].direction,
-                "vacancy_id": vacancies_json[i].vacancy_id,
-                "premium": vacancies_json[i].premium,
-                "has_test": vacancies_json[i].has_test,
-                "response_url": vacancies_json[i].response_url,
-                "address_lat": vacancies_json[i].address_lat,
-                "address_lng": vacancies_json[i].address_lng,
-                "address_raw": vacancies_json[i].address_raw,
-                "alternate_url": vacancies_json[i].alternate_url,
-                "salary_from": vacancies_json[i].salary_from,
-                "salary_to": vacancies_json[i].salary_to,
-                "salary_currency": vacancies_json[i].salary_currency,
-                "salary_gross": vacancies_json[i].salary_gross,
-                "name": vacancies_json[i].name,
-                "insider_interview_id": vacancies_json[i].insider_interview_id,
-                "insider_interview_url": vacancies_json[i].insider_interview_url,
-                "area_id": vacancies_json[i].area_id,
-                "area_name": vacancies_json[i].area_name,
-                "url": vacancies_json[i].url,
-                "published_at": vacancies_json[i].published_at,
-                "employer_url": vacancies_json[i].employer_url,
-                "employer_name": vacancies_json[i].employer_name,
-                "employer_id": vacancies_json[i].employer_id,
-                "response_letter_required": vacancies_json[i].response_letter_required,
-                "type_id": vacancies_json[i].type_id,
-                "type_name": vacancies_json[i].type_name,
-                "archived": vacancies_json[i].archived,
-                "schedule_id": vacancies_json[i].schedule_id
+                "query_string": feat[i].query_string,
+                "type": feat[i].type,
+                "level": feat[i].level,
+                "direction": feat[i].direction,
+                "vacancy_id": feat[i].vacancy_id,
+                "premium": feat[i].premium,
+                "has_test": feat[i].has_test,
+                "response_url": feat[i].response_url,
+                "address_lat": feat[i].address_lat,
+                "address_lng": feat[i].address_lng,
+                "address_raw": feat[i].address_raw,
+                "alternate_url": feat[i].alternate_url,
+                "salary_from": feat[i].salary_from,
+                "salary_to": feat[i].salary_to,
+                "salary_currency": feat[i].salary_currency,
+                "salary_gross": feat[i].salary_gross,
+                "name": feat[i].name,
+                "insider_interview_id": feat[i].insider_interview_id,
+                "insider_interview_url": feat[i].insider_interview_url,
+                "area_id": feat[i].area_id,
+                "area_name": feat[i].area_name,
+                "url": feat[i].url,
+                "published_at": feat[i].published_at,
+                "employer_url": feat[i].employer_url,
+                "employer_name": feat[i].employer_name,
+                "employer_id": feat[i].employer_id,
+                "response_letter_required": feat[i].response_letter_required,
+                "type_id": feat[i].type_id,
+                "type_name": feat[i].type_name,
+                "archived": feat[i].archived,
+                "schedule_id": feat[i].schedule_id
             });
         }
-        table.appendRows(vacancies_json);
+        table.appendRows(tableData);
         doneCallback();
         });
+    //const { ClickHouse } = requirejs(['clickhouse']);
     };
 
     tableau.registerConnector(myConnector);
